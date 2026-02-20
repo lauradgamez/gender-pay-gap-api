@@ -9,9 +9,6 @@ __pycache__/
 *.pyd
 .Python
 
-# Trained models (large files)
-saved_models/
-
 # IDE
 .vscode/
 .idea/
