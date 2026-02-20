@@ -11,7 +11,7 @@ A production-ready REST API for predicting gender pay gap using Machine Learning
 
 This API provides real-time predictions of gender pay gap percentages based on comprehensive labor market indicators. Built as part of a Master's thesis in Data Science, it transforms academic research into a deployable production system.
 
-**Live Demo:** [API Documentation](http://localhost:8000/docs)
+**Live Demo:** [API Documentation](https://gender-pay-gap-api.onrender.com/docs)
 
 ![API Documentation](docs_screenshot.png)
 
@@ -178,7 +178,7 @@ This ensures consistency between training and inference while following ML engin
 
 ## 🔮 Future Improvements
 
-- [ ] Deploy to cloud platform (AWS/GCP/Azure)
+- [x] Deploy to cloud platform (Render)
 - [ ] Add batch prediction endpoint
 - [ ] Implement API authentication
 - [ ] Add caching for frequent predictions
