@@ -16,7 +16,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
 python-multipart==0.0.22
 PyYAML==6.0.3
-scikit-learn==1.8.0
+scikit-learn==1.5.1
 scipy==1.17.0
 six==1.17.0
 starlette==0.52.1
