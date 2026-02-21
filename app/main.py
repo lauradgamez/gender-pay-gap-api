@@ -50,7 +50,7 @@ def predict(input_data: PredictionInput) -> PredictionOutput:
         HTTPException: 500 if prediction fails
     """
     try:
-        data_dict = input_data.model_dump()
+        data_dict = input_data.model_dump(by_alias=False)
         prediction = predict_pay_gap(data_dict)
         
         return PredictionOutput(
