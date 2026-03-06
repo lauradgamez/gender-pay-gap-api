@@ -468,7 +468,13 @@ with tab3:
                 "ref_area_label": region,
                 "classif1": df[df['classif1_label'] == occupation]['classif1'].iloc[0],
                 "classif1_label": occupation,
-                "obs_status_label": df[df['classif1_label'] == occupation]['obs_status_label'].iloc[0],
+                "obs_status_label": df[
+                    (df['classif1_label'] == occupation) & 
+                    (df['obs_status_label'].notna())
+                ]['obs_status_label'].iloc[0] if len(df[
+                    (df['classif1_label'] == occupation) & 
+                    (df['obs_status_label'].notna())
+                ]) > 0 else "ruptura de serie",
                 "obs_value_employees_women": employees_women,
                 "obs_value_employees_men": employees_men,
                 "obs_value_earnings_women": earnings_women,
