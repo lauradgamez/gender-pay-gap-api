@@ -488,6 +488,7 @@ with tab3:
                 "delta_hours": delta_hours
             }
 
+            st.write(payload)
             API_URL = "https://gender-pay-gap-api.onrender.com/predict"
 
             try:
