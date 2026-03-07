@@ -403,7 +403,7 @@ with tab3:
             "Reference year (contextual)",
             min_value=1969,
             max_value=2035,
-            value=2020
+            value=2030
         )
         st.caption(
             "💡 The year provides historical context but the prediction is primarily "
@@ -431,7 +431,7 @@ with tab3:
             min_value=0.0,
             max_value=100000.0,
             value=500.0,
-            step=100.0
+            step=25.0
         )
 
         employees_men = st.number_input(
@@ -439,7 +439,7 @@ with tab3:
             min_value=0.0,
             max_value=100000.0,
             value=500.0,
-            step=100.0
+            step=25.0
         )
 
         hours_women = st.number_input(
