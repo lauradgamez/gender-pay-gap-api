@@ -38,6 +38,27 @@ df = load_data()
 label_encoders = load_encoders()
 
 # -------------------------------------------------------
+# Build mappings from encoders directly
+# -------------------------------------------------------
+classif1_label_to_code = {
+    label: code
+    for label, code in zip(
+        label_encoders['classif1_label'].classes_,
+        label_encoders['classif1'].classes_
+    )
+}
+
+ref_area_label_to_code = {
+    label: code
+    for label, code in zip(
+        label_encoders['ref_area_label'].classes_,
+        label_encoders['ref_area'].classes_
+    )
+}
+
+obs_status_default = label_encoders['obs_status_label'].classes_[0]
+
+# -------------------------------------------------------
 # Header
 # -------------------------------------------------------
 st.title("⚖️ Gender Pay Gap Analysis")
@@ -382,7 +403,7 @@ with tab3:
             "Reference year (contextual)",
             min_value=1969,
             max_value=2035,
-            value=2030
+            value=2020
         )
         st.caption(
             "💡 The year provides historical context but the prediction is primarily "
@@ -447,7 +468,7 @@ with tab3:
         region = st.selectbox(
             "Country",
             options=region_options,
-            index=region_options.index('argentina')
+            index=region_options.index('colombia')
         )
 
     with col_right:
@@ -464,17 +485,11 @@ with tab3:
 
             payload = {
                 "time": year,
-                "ref_area": df[df['ref_area_label'] == region]['ref_area'].iloc[0],
+                "ref_area": ref_area_label_to_code[region],
                 "ref_area_label": region,
-                "classif1": df[df['classif1_label'] == occupation]['classif1'].iloc[0],
+                "classif1": classif1_label_to_code[occupation],
                 "classif1_label": occupation,
-                "obs_status_label": df[
-                    (df['classif1_label'] == occupation) & 
-                    (df['obs_status_label'].notna())
-                ]['obs_status_label'].iloc[0] if len(df[
-                    (df['classif1_label'] == occupation) & 
-                    (df['obs_status_label'].notna())
-                ]) > 0 else "ruptura de serie",
+                "obs_status_label": obs_status_default,
                 "obs_value_employees_women": employees_women,
                 "obs_value_employees_men": employees_men,
                 "obs_value_earnings_women": earnings_women,
@@ -488,7 +503,6 @@ with tab3:
                 "delta_hours": delta_hours
             }
 
-            st.write(payload)
             API_URL = "https://gender-pay-gap-api.onrender.com/predict"
 
             try:
